@@ -1,0 +1,287 @@
+/* ─────────────────────────────────────────────
+   popup.css  —  Focus Timer Extension Styles
+   ───────────────────────────────────────────── */
+
+/* ── Tokens ── */
+:root {
+  --clr-bg:        #1a1a2e;
+  --clr-surface:   #16213e;
+  --clr-card:      #0f3460;
+
+  --clr-work:      #e94560;
+  --clr-break:     #4ecca3;
+  --clr-long:      #f5a623;
+
+  --clr-accent:    var(--clr-work);
+  --clr-text:      #eaeaea;
+  --clr-muted:     #8892a4;
+  --clr-ring-bg:   #ffffff18;
+
+  --radius:        12px;
+  --transition:    0.25s ease;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 300px;
+  min-height: 380px;
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  padding: 0 0 16px;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #ffffff10;
+}
+
+.logo { font-size: 20px; }
+
+header h1 {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--clr-text);
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background var(--transition);
+}
+.icon-btn:hover { background: #ffffff15; }
+
+/* ── Mode Pills ── */
+.mode-pills {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 14px 16px 4px;
+}
+
+.pill {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--clr-muted);
+  background: #ffffff0d;
+  transition: all var(--transition);
+  cursor: default;
+  letter-spacing: 0.4px;
+}
+
+.pill.active-work   { background: var(--clr-work);  color: #fff; }
+.pill.active-break  { background: var(--clr-break); color: #1a1a2e; }
+.pill.active-long   { background: var(--clr-long);  color: #1a1a2e; }
+
+/* ── Ring ── */
+.ring-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px auto;
+  width: 160px;
+  height: 160px;
+}
+
+.ring { transform: rotate(-90deg); }
+
+.ring-bg {
+  fill: none;
+  stroke: var(--clr-ring-bg);
+  stroke-width: 10;
+}
+
+.ring-fg {
+  fill: none;
+  stroke: var(--clr-accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease;
+}
+
+.time-display {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+#timeDisplay {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+#modeLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--clr-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ── Session Dots ── */
+.session-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px 16px 12px;
+}
+
+.session-label {
+  font-size: 11px;
+  color: var(--clr-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dots { display: flex; gap: 5px; }
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff18;
+  transition: background var(--transition);
+}
+
+.dot.filled { background: var(--clr-work); }
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.ctrl-btn {
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--transition);
+}
+
+.ctrl-btn.primary {
+  background: var(--clr-accent);
+  color: #fff;
+  padding: 10px 32px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  min-width: 110px;
+}
+
+.ctrl-btn.primary:hover { filter: brightness(1.15); transform: translateY(-1px); }
+.ctrl-btn.primary:active { transform: translateY(0); filter: brightness(0.95); }
+
+.ctrl-btn.secondary {
+  background: #ffffff12;
+  color: var(--clr-text);
+  padding: 10px 14px;
+  font-size: 16px;
+}
+
+.ctrl-btn.secondary:hover { background: #ffffff22; }
+
+.ctrl-btn.full-width {
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* ── Settings Panel ── */
+#settingsView {
+  padding: 14px 16px;
+}
+
+#settingsView h2 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--clr-text);
+}
+
+.setting-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.setting-group label {
+  font-size: 12px;
+  color: var(--clr-muted);
+  flex: 1;
+}
+
+.number-input {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.num-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: #ffffff15;
+  color: var(--clr-text);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.num-btn:hover { background: var(--clr-accent); }
+
+.number-input input {
+  width: 42px;
+  text-align: center;
+  background: var(--clr-surface);
+  border: 1px solid #ffffff18;
+  border-radius: 6px;
+  color: var(--clr-text);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 0;
+  
+}
+
+.number-input input::-webkit-outer-spin-button,
+.number-input input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+/* ── Utilities ── */
+.hidden { display: none !important; }
+
+/* ── Color mode transitions via CSS variable swap ── */
+body.mode-work   { --clr-accent: var(--clr-work); }
+body.mode-break  { --clr-accent: var(--clr-break); }
+body.mode-long   { --clr-accent: var(--clr-long); }

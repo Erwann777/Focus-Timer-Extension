@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Timer</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <span class="logo">🕐</span>
+    <h1>Focus Timer</h1>
+    <button id="settingsToggle" class="icon-btn" title="Settings" aria-label="Open settings">
+      ⚙️
+    </button>
+  </header>
+
+  <!-- ── Main Timer View ── -->
+  <main id="timerView">
+
+    <!-- Mode indicator pills -->
+    <div class="mode-pills">
+      <span class="pill" id="pillWork">Work</span>
+      <span class="pill" id="pillBreak">Break</span>
+      <span class="pill" id="pillLong">Long Break</span>
+    </div>
+
+    <!-- Circular progress ring + time display -->
+    <div class="ring-wrapper">
+      <svg class="ring" viewBox="0 0 160 160" width="160" height="160">
+        <circle class="ring-bg" cx="80" cy="80" r="70" />
+        <circle class="ring-fg" id="ringFg" cx="80" cy="80" r="70"
+          stroke-dasharray="439.82"
+          stroke-dashoffset="0" />
+      </svg>
+      <div class="time-display">
+        <span id="timeDisplay">25:00</span>
+        <span id="modeLabel">Focus</span>
+      </div>
+    </div>
+
+    <!-- Session dots -->
+    <div class="session-row">
+      <span class="session-label">Session</span>
+      <div id="sessionDots" class="dots"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="btnReset" class="ctrl-btn secondary" title="Reset">↺</button>
+      <button id="btnStartPause" class="ctrl-btn primary">Start</button>
+      <button id="btnSkip" class="ctrl-btn secondary" title="Skip to next">⏭</button>
+    </div>
+
+  </main>
+
+  <!-- ── Settings Panel ── -->
+  <section id="settingsView" class="hidden">
+    <h2>Settings</h2>
+
+    <div class="setting-group">
+      <label for="inputWork">Work duration (min)</label>
+      <div class="number-input">
+        <button class="num-btn" data-target="inputWork" data-delta="-1">−</button>
+        <input type="number" id="inputWork" min="1" max="60" value="25" />
+        <button class="num-btn" data-target="inputWork" data-delta="1">+</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <label for="inputBreak">Short break (min)</label>
+      <div class="number-input">
+        <button class="num-btn" data-target="inputBreak" data-delta="-1">−</button>
+        <input type="number" id="inputBreak" min="1" max="30" value="5" />
+        <button class="num-btn" data-target="inputBreak" data-delta="1">+</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <label for="inputLong">Long break (min)</label>
+      <div class="number-input">
+        <button class="num-btn" data-target="inputLong" data-delta="-1">−</button>
+        <input type="number" id="inputLong" min="1" max="60" value="15" />
+        <button class="num-btn" data-target="inputLong" data-delta="1">+</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <label for="inputInterval">Long break after (sessions)</label>
+      <div class="number-input">
+        <button class="num-btn" data-target="inputInterval" data-delta="-1">−</button>
+        <input type="number" id="inputInterval" min="1" max="10" value="4" />
+        <button class="num-btn" data-target="inputInterval" data-delta="1">+</button>
+      </div>
+    </div>
+
+    <button id="btnSaveSettings" class="ctrl-btn primary full-width">Save & Reset</button>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>
